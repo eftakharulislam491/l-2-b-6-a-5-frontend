@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">All Ingredients</title>
+  <desc id="desc">A warm circular icon with a leaf and droplet to represent all ingredients.</desc>
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#bg)"/>
+  <path d="M20 31c0-9.389 7.611-17 17-17-1.157 8.157-7.343 14.399-15.44 15.64A16.936 16.936 0 0 0 20 31Z" fill="#fff7ed" opacity=".95"/>
+  <path d="M23 42c0-6.075 4.925-11 11-11-1.025 5.322-5.203 9.55-10.48 10.64A10.98 10.98 0 0 0 23 42Z" fill="#fff" opacity=".9"/>
+  <path d="M40.5 22.5c3.59 5.26 5.39 8.97 5.39 11.15 0 3.41-2.81 6.18-6.27 6.18s-6.27-2.77-6.27-6.18c0-2.19 1.8-5.89 5.4-11.15a1.07 1.07 0 0 1 1.75 0Z" fill="#ffedd5"/>
+  <circle cx="39.62" cy="33.75" r="3.1" fill="#f97316" opacity=".75"/>
+</svg>
