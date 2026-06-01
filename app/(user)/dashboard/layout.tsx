@@ -19,6 +19,10 @@ export default async function UserLayout({
     redirect("/login?redirect=/dashboard");
   }
 
+  if (user.isAdmin) {
+    redirect("/admin");
+  }
+
   return (
     <div>
       <Navbar />

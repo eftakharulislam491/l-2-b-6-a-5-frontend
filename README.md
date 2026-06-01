@@ -3,7 +3,7 @@
 Frontend for Assignment 5, built with Next.js (App Router) and Tailwind CSS.
 
 ## Live URL
-- Frontend: `https://your-frontend-url.vercel.app`
+- Frontend: `https://l-2-b-6-a-5-frontend.vercel.app`
 
 ## Features
 - Public storefront with multiple homepage sections:
@@ -61,7 +61,7 @@ lib/             Utilities and auth helpers
 Create `.env.local`:
 
 ```env
-BASE_URL=https://your-backend-url.vercel.app/
+BASE_URL=https://e-commerce-backend-491.vercel.app/
 ```
 
 ## Run Locally
@@ -77,8 +77,8 @@ npm run start
 ```
 
 ## Assignment Submission Info (Fill Before Submission)
-- Frontend Repo: `https://github.com/your-username/project-frontend`
-- Frontend Live URL: `https://your-frontend-url.vercel.app`
+- Frontend Repo: `https://github.com/eftakharulislam491/l-2-b-6-a-5-frontend.git`
+- Frontend Live URL: `https://l-2-b-6-a-5-frontend.vercel.app`
 - Admin Email: `admin@project.com`
 - Admin Password: `your-admin-password`
 

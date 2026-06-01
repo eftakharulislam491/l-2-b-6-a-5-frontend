@@ -2,11 +2,14 @@
 
 import { useMemo, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Eye, Search, X } from "lucide-react";
+import { CreditCard, Eye, Loader2, Search, X } from "lucide-react";
+import { toast } from "sonner";
 import type { OrderSummary } from "@/services/order/order-types";
 import AppPagination from "@/components/shared/AppPagination";
+import { useGlobalLoading } from "@/components/providers/global-loading-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { initiatePayment } from "@/services/payment/initiatePayment";
 import {
   Table,
   TableBody,
@@ -32,10 +35,16 @@ type MyOrdersProps = {
 function OrderDetailsDialog({
   order,
   onClose,
+  isPaying,
+  onPay,
 }: {
   order: OrderSummary;
   onClose: () => void;
+  isPaying: boolean;
+  onPay: (order: OrderSummary) => void;
 }) {
+  const canPay = isPaymentProcessing(order.paymentStatus);
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
@@ -73,6 +82,22 @@ function OrderDetailsDialog({
               <p className="mt-3 text-sm text-slate-600">
                 Payment: {formatOrderStatus(order.paymentStatus)}
               </p>
+              {canPay ? (
+                <Button
+                  type="button"
+                  size="sm"
+                  className="mt-4"
+                  disabled={isPaying}
+                  onClick={() => onPay(order)}
+                >
+                  {isPaying ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <CreditCard className="h-4 w-4" />
+                  )}
+                  Pay
+                </Button>
+              ) : null}
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
@@ -150,13 +175,19 @@ function OrderDetailsDialog({
   );
 }
 
+function isPaymentProcessing(status: string) {
+  return status.trim().toUpperCase() === "PROCESSING";
+}
+
 export default function MyOrders({
   initialOrders = [],
   initialError = null,
 }: MyOrdersProps) {
+  const { withLoading } = useGlobalLoading();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
+  const [payingOrderId, setPayingOrderId] = useState<string | null>(null);
 
   const filteredOrders = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -184,6 +215,34 @@ export default function MyOrders({
   const visibleOrders = filteredOrders.slice(startIndex, startIndex + 8);
   const selectedOrder =
     initialOrders.find((order) => order.id === selectedOrderId) ?? null;
+
+  const handlePay = async (order: OrderSummary) => {
+    if (payingOrderId || !isPaymentProcessing(order.paymentStatus)) {
+      return;
+    }
+
+    setPayingOrderId(order.id);
+
+    try {
+      const result = await withLoading("Redirecting to payment...", async () =>
+        initiatePayment(order.id),
+      );
+
+      if (!result.success) {
+        toast.error(result.message);
+        return;
+      }
+
+      if (result.requiresRedirect && result.gatewayPageUrl) {
+        window.location.assign(result.gatewayPageUrl);
+        return;
+      }
+
+      toast.error("Payment gateway did not return a checkout URL.");
+    } finally {
+      setPayingOrderId(null);
+    }
+  };
 
   return (
     <div>
@@ -251,14 +310,32 @@ export default function MyOrders({
                     {formatOrderMoney(order.total)}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8"
-                      onClick={() => setSelectedOrderId(order.id)}
-                    >
-                      <Eye className="h-4 w-4 text-gray-600" />
-                    </Button>
+                    <div className="flex justify-end gap-2">
+                      {isPaymentProcessing(order.paymentStatus) ? (
+                        <Button
+                          type="button"
+                          size="sm"
+                          className="h-8"
+                          disabled={Boolean(payingOrderId)}
+                          onClick={() => void handlePay(order)}
+                        >
+                          {payingOrderId === order.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <CreditCard className="h-4 w-4" />
+                          )}
+                          Pay
+                        </Button>
+                      ) : null}
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => setSelectedOrderId(order.id)}
+                      >
+                        <Eye className="h-4 w-4 text-gray-600" />
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))
@@ -298,6 +375,8 @@ export default function MyOrders({
           <OrderDetailsDialog
             order={selectedOrder}
             onClose={() => setSelectedOrderId(null)}
+            isPaying={payingOrderId === selectedOrder.id}
+            onPay={(order) => void handlePay(order)}
           />
         ) : null}
       </Dialog.Root>

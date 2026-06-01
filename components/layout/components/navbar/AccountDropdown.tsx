@@ -85,28 +85,30 @@ export default function AccountDropdown({
         <DropdownMenuSeparator />
 
         {/* Items */}
-        <DropdownMenuItem asChild className="cursor-pointer">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <Settings className="h-4 w-4" />
-            My Account
-          </Link>
-        </DropdownMenuItem>
-
-        {user.isAdmin && (
+        {user.isAdmin ? (
           <DropdownMenuItem asChild className="cursor-pointer">
             <Link href="/admin" className="flex items-center gap-2">
               <LayoutDashboard className="h-4 w-4" />
               Admin Panel
             </Link>
           </DropdownMenuItem>
-        )}
+        ) : (
+          <>
+            <DropdownMenuItem asChild className="cursor-pointer">
+              <Link href="/dashboard" className="flex items-center gap-2">
+                <Settings className="h-4 w-4" />
+                My Account
+              </Link>
+            </DropdownMenuItem>
 
-        <DropdownMenuItem asChild className="cursor-pointer">
-          <Link href="/dashboard/orders" className="flex items-center gap-2">
-            <ShoppingBag className="h-4 w-4" />
-            My Orders
-          </Link>
-        </DropdownMenuItem>
+            <DropdownMenuItem asChild className="cursor-pointer">
+              <Link href="/dashboard/orders" className="flex items-center gap-2">
+                <ShoppingBag className="h-4 w-4" />
+                My Orders
+              </Link>
+            </DropdownMenuItem>
+          </>
+        )}
 
         <DropdownMenuSeparator />
 
