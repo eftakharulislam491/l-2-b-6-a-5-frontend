@@ -89,9 +89,9 @@ export default function ProductGallery({
   }, [activeImage]);
 
   return (
-    <section className="w-full min-w-0 space-y-4 rounded-[28px] border border-slate-200 bg-white p-3 shadow-sm sm:space-y-5 sm:p-4">
+    <section className="w-full min-w-0 space-y-4 bg-card px-0 text-card-foreground sm:space-y-5">
       <div
-        className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+        className="group relative overflow-hidden rounded-lg border border-border bg-background"
         onMouseMove={handleMouseMove}
         onMouseEnter={() => {
           if (zoomEnabled) {
@@ -127,7 +127,7 @@ export default function ProductGallery({
             type="button"
             onClick={() => scrollThumbs("prev")}
             aria-label="Previous thumbnails"
-            className="absolute left-1 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100 sm:flex"
+            className="absolute left-1 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-card-foreground shadow-sm transition hover:bg-secondary sm:flex"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -145,10 +145,10 @@ export default function ProductGallery({
                   type="button"
                   onClick={() => setActiveImage(index)}
                   aria-label={`Show image ${index + 1}`}
-                  className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 bg-white transition sm:h-20 sm:w-20 ${
+                  className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 bg-card transition sm:h-20 sm:w-20 ${
                     isActive
-                      ? "border-blue-600 shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
-                      : "border-slate-200 hover:border-blue-300"
+                      ? "border-primary ring-4 ring-primary/15"
+                      : "border-border hover:border-primary/50"
                   }`}
                 >
                   <img
@@ -166,7 +166,7 @@ export default function ProductGallery({
             type="button"
             onClick={() => scrollThumbs("next")}
             aria-label="Next thumbnails"
-            className="absolute right-1 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100 sm:flex"
+            className="absolute right-1 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-card-foreground shadow-sm transition hover:bg-secondary sm:flex"
           >
             <ChevronRight className="h-4 w-4" />
           </button>

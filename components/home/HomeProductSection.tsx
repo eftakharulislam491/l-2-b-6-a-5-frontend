@@ -10,14 +10,14 @@ const HomeProductSection = ({ products }: Props) => {
   const featuredProducts = products.slice(0, 8);
 
   return (
-    <section className="py-16 bg-white">
+    <section className="bg-background py-16 text-foreground">
       <div className=" mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
             Featured Ingredients
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-muted-foreground">
             Hand-picked cosmetic raw materials trusted by professionals
           </p>
         </div>
@@ -28,7 +28,7 @@ const HomeProductSection = ({ products }: Props) => {
         {/* CTA */}
         <div className="text-center mt-12">
           <Link href="/products">
-            <button className="inline-flex items-center justify-center px-8 py-3 bg-gray-900 text-white rounded-xl font-semibold hover:bg-gray-800 transition-all cursor-pointer">
+            <button className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-primary px-8 py-3 font-semibold text-primary-foreground transition-all hover:bg-primary/90">
               View All Products
             </button>
           </Link>

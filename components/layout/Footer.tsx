@@ -12,6 +12,10 @@ import {
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "All Products", href: "/products" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
   { label: "Cart", href: "/cart" },
   { label: "Login", href: "/login" },
 ];

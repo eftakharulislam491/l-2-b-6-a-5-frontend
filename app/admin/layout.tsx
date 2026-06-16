@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { AdminSidebar } from "@/components/modules/admin/sidebar/AdminSidebar";
+import { AdminTopbarActions } from "@/components/modules/admin/dashboard/AdminTopbarActions";
 import { getUserFromToken } from "@/lib/auth";
 
 export default async function AdminLayout({
@@ -31,15 +32,18 @@ export default async function AdminLayout({
     <SidebarProvider>
       <AdminSidebar />
 
-      <SidebarInset className="min-w-0">
+      <SidebarInset className="min-w-0 bg-background text-foreground">
         {/* Persistent Header */}
-        <header className="flex h-14 items-center gap-2 border-b border-neutral-300 px-3 sm:h-16 sm:px-4">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-border bg-background/95 px-3 text-foreground backdrop-blur sm:h-16 sm:px-4">
           <SidebarTrigger />
           <Separator orientation="vertical" className="h-4" />
+          <AdminTopbarActions user={user} />
         </header>
 
         {/* Page Content */}
-        <main className="min-w-0 flex-1 p-3 sm:p-6">{children}</main>
+        <main className="min-w-0 flex-1 bg-background p-3 text-foreground sm:p-6">
+          {children}
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

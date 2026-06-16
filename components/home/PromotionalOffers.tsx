@@ -10,19 +10,19 @@ import {
 
 export default function PromotionalOffers() {
   return (
-    <section className="container mx-auto bg-white py-12 sm:py-16">
+    <section className="container mx-auto bg-muted/45 py-12 text-foreground sm:py-16">
       <div className="">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           {/* LEFT VISUAL */}
           <div className="relative">
             {/* big ring */}
             <div className="relative mx-auto aspect-square w-full max-w-[520px]">
-              <div className="absolute inset-0 rounded-full bg-slate-100" />
-              <div className="absolute inset-[10%] rounded-full bg-white" />
-              <div className="absolute inset-[18%] rounded-full border-[18px] border-slate-100" />
+              <div className="absolute inset-0 rounded-full bg-secondary" />
+              <div className="absolute inset-[10%] rounded-full bg-card" />
+              <div className="absolute inset-[18%] rounded-full border-[18px] border-muted" />
 
               {/* dark arc */}
-              <div className="absolute -left-3 top-10 h-10 w-64 rounded-full bg-slate-900 rotate-[-18deg]" />
+              <div className="absolute -left-3 top-10 h-10 w-64 rotate-[-18deg] rounded-full bg-primary" />
 
               {/* chair image */}
               <img
@@ -32,13 +32,13 @@ export default function PromotionalOffers() {
               />
 
               {/* callout: comfortable */}
-              <div className="absolute left-0 top-8 w-[210px] rounded-xl bg-white px-3 py-2 shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
+              <div className="absolute left-0 top-8 w-[210px] rounded-xl border border-border bg-card px-3 py-2 shadow-sm">
                 <div className="flex items-start gap-2">
-                  <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100">
-                    <Sofa className="h-4 w-4 text-slate-700" />
+                  <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-secondary">
+                    <Sofa className="h-4 w-4 text-secondary-foreground" />
                   </span>
-                  <div className="text-[12px] leading-4 text-slate-600">
-                    <span className="font-semibold text-slate-800">
+                  <div className="text-[12px] leading-4 text-muted-foreground">
+                    <span className="font-semibold text-card-foreground">
                       Beauty-grade quality
                     </span>{" "}
                      & more formula-ready essentials
@@ -47,13 +47,13 @@ export default function PromotionalOffers() {
               </div>
 
               {/* pin line (simple) */}
-              <div className="absolute left-[34%] top-[18%] h-24 w-px bg-slate-300" />
-              <div className="absolute left-[34%] top-[41%] h-2 w-2 rounded-full bg-white ring-2 ring-slate-300" />
+              <div className="absolute left-[34%] top-[18%] h-24 w-px bg-border" />
+              <div className="absolute left-[34%] top-[41%] h-2 w-2 rounded-full bg-card ring-2 ring-border" />
 
               {/* 30% off tag */}
-              <div className="absolute right-4 top-[38%] rounded-xl bg-white px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
+              <div className="absolute right-4 top-[38%] rounded-xl border border-border bg-card px-4 py-3 shadow-sm">
                 <div className="flex items-end gap-2">
-                  <div className="text-2xl font-semibold text-slate-800">
+                  <div className="text-2xl font-semibold text-card-foreground">
                     30%
                   </div>
                   <div className="pb-1 text-[11px] font-semibold text-amber-600">
@@ -92,27 +92,27 @@ export default function PromotionalOffers() {
               </div>
 
               {/* client review pill */}
-              <div className="absolute bottom-3 left-6 flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-[0_12px_30px_rgba(0,0,0,0.10)]">
+              <div className="absolute bottom-3 left-6 flex items-center gap-3 rounded-full border border-border bg-card px-3 py-2 shadow-sm">
                 <div className="flex -space-x-2">
                   <img
-                    className="h-8 w-8 rounded-full ring-2 ring-white object-cover"
+                    className="h-8 w-8 rounded-full object-cover ring-2 ring-card"
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
                     alt="client 1"
                   />
                   <img
-                    className="h-8 w-8 rounded-full ring-2 ring-white object-cover"
+                    className="h-8 w-8 rounded-full object-cover ring-2 ring-card"
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
                     alt="client 2"
                   />
-                  <span className="grid h-8 w-8 place-items-center rounded-full bg-slate-800 text-[11px] font-semibold text-white ring-2 ring-white">
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-[11px] font-semibold text-primary-foreground ring-2 ring-card">
                     +2
                   </span>
                 </div>
                 <div className="leading-4">
-                  <div className="text-xs font-semibold text-slate-800">
+                  <div className="text-xs font-semibold text-card-foreground">
                     Client
                   </div>
-                  <div className="text-xs text-slate-500">Review</div>
+                  <div className="text-xs text-muted-foreground">Review</div>
                 </div>
                 <Star className="h-4 w-4 text-amber-500" />
               </div>
@@ -121,10 +121,10 @@ export default function PromotionalOffers() {
 
           {/* RIGHT CONTENT */}
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-slate-800">
+            <h2 className="font-serif text-3xl font-semibold text-foreground sm:text-4xl">
               Promotional Offersg
             </h2>
-            <p className="mt-3 max-w-xl text-sm sm:text-base leading-6 text-slate-500">
+            <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
               Upgrade your beauty inventory with exclusive savings on premium makeup raw materials, cosmetic bases, essential oils, and active ingredients.
             </p>
 
@@ -147,11 +147,11 @@ export default function PromotionalOffers() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <button className="inline-flex items-center justify-center rounded-full bg-slate-800 px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-900">
+              <button className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90">
                 Shop Now
               </button>
 
-              <button className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50">
+              <button className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-7 py-3 text-sm font-semibold text-card-foreground shadow-sm transition hover:bg-secondary">
                 View Collection
                 <ArrowUpRight className="h-4 w-4" />
               </button>
@@ -172,12 +172,12 @@ type FeatureRowProps = {
 function FeatureRow({ icon, title, text }: FeatureRowProps) {
   return (
     <div className="flex items-start gap-3">
-      <div className="mt-0.5 grid h-10 w-10 place-items-center rounded-full bg-slate-100 text-slate-700">
+      <div className="mt-0.5 grid h-10 w-10 place-items-center rounded-full bg-secondary text-secondary-foreground">
         {icon}
       </div>
       <div>
-        <div className="text-sm font-semibold text-slate-800">{title}</div>
-        <div className="mt-1 text-sm text-slate-500">{text}</div>
+        <div className="text-sm font-semibold text-foreground">{title}</div>
+        <div className="mt-1 text-sm text-muted-foreground">{text}</div>
       </div>
     </div>
   );

@@ -68,13 +68,13 @@ export function AdminSidebar({
   const pathname = usePathname();
 
   return (
-    <Sidebar {...props} className="border border-r-neutral-300">
-      <SidebarHeader className="border-b border-slate-200 px-4 py-5">
+    <Sidebar {...props} className="border border-sidebar-border bg-sidebar text-sidebar-foreground">
+      <SidebarHeader className="border-b border-sidebar-border px-4 py-5">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold text-white">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sidebar-primary text-sm font-bold text-sidebar-primary-foreground">
             MA
           </div>
-          <span className="text-lg font-semibold tracking-tight text-slate-900">
+          <span className="text-lg font-semibold tracking-tight text-sidebar-foreground">
             Metro Admin
           </span>
         </Link>

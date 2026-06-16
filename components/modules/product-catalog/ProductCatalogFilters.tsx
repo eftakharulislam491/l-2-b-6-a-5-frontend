@@ -51,8 +51,8 @@ export default function ProductCatalogFilters({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-semibold text-slate-900">Filters</p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="text-sm font-semibold text-foreground">Filters</p>
+          <p className="mt-1 text-xs text-muted-foreground">
             Refine the real product list.
           </p>
         </div>
@@ -68,7 +68,7 @@ export default function ProductCatalogFilters({
       </div>
 
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Categories
         </p>
 
@@ -77,9 +77,9 @@ export default function ProductCatalogFilters({
             categoryOptions.map((category) => (
               <label
                 key={category}
-                className="flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-slate-100 px-3 py-2 text-sm"
+                className="flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-border bg-card px-3 py-2 text-sm"
               >
-                <span className="text-slate-700">{category}</span>
+                <span className="text-card-foreground">{category}</span>
                 <Checkbox
                   checked={selectedCategories.includes(category)}
                   onCheckedChange={(checked) =>
@@ -89,13 +89,13 @@ export default function ProductCatalogFilters({
               </label>
             ))
           ) : (
-            <p className="text-sm text-slate-500">No categories available.</p>
+            <p className="text-sm text-muted-foreground">No categories available.</p>
           )}
         </div>
       </div>
 
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Availability
         </p>
 
@@ -108,8 +108,8 @@ export default function ProductCatalogFilters({
               className={cn(
                 "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                 stockFilter === filter.value
-                  ? "border-slate-900 bg-slate-900 text-white"
-                  : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50",
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-card text-card-foreground hover:bg-secondary",
               )}
             >
               {filter.label}
@@ -119,12 +119,12 @@ export default function ProductCatalogFilters({
       </div>
 
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Price Range
         </p>
 
-        <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-          <div className="flex items-center justify-between gap-4 text-xs font-medium text-slate-600">
+        <div className="rounded-2xl border border-border bg-muted p-4">
+          <div className="flex items-center justify-between gap-4 text-xs font-medium text-muted-foreground">
             <span>{formatCurrency(priceRange[0])}</span>
             <span>{formatCurrency(priceRange[1])}</span>
           </div>
@@ -142,7 +142,7 @@ export default function ProductCatalogFilters({
               />
             </div>
           ) : (
-            <p className="mt-3 text-xs text-slate-500">
+            <p className="mt-3 text-xs text-muted-foreground">
               All products currently share the same price.
             </p>
           )}
@@ -150,22 +150,22 @@ export default function ProductCatalogFilters({
       </div>
 
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Merchandising
         </p>
 
-        <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-slate-100 px-3 py-3 text-sm">
+        <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 text-sm">
           <Checkbox
             checked={featuredOnly}
             onCheckedChange={(checked) => onFeaturedOnlyChange(checked === true)}
           />
-          <span className="text-slate-700">Featured products only</span>
+          <span className="text-card-foreground">Featured products only</span>
         </label>
       </div>
 
       {selectedCategories.length > 0 ? (
         <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Active Categories
           </p>
 
@@ -176,7 +176,7 @@ export default function ProductCatalogFilters({
                 <button
                   type="button"
                   onClick={() => onRemoveCategory(category)}
-                  className="rounded-full p-0.5 hover:bg-slate-200"
+                  className="rounded-full p-0.5 hover:bg-secondary"
                   aria-label={`Remove ${category}`}
                 >
                   <X className="h-3 w-3" />

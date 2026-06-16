@@ -8,6 +8,7 @@ import RelatedProductsSection from "@/components/modules/product-details/Related
 import { mapProductToDetailView } from "@/components/modules/product-details/product-detail-mappers";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { getAllProducts } from "@/services/products/getAllProducts";
 import { getSingleProduct } from "@/services/products/getSingleProduct";
 import { getMyProductReview } from "@/services/review/getMyProductReview";
 import { getProductReviews } from "@/services/review/getProductReviews";
@@ -28,12 +29,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   if (!product) {
     return (
-      <div className="mx-auto my-8 w-full max-w-3xl px-4 sm:px-6 lg:my-12 lg:px-8">
+      <div className="mx-auto my-8 w-full max-w-3xl bg-background px-4 text-foreground sm:px-6 lg:my-12 lg:px-8">
         <Card className="rounded-3xl border border-amber-200 bg-amber-50 p-8">
-          <h1 className="text-2xl font-semibold text-slate-900">
+          <h1 className="text-2xl font-semibold text-amber-950">
             We could not load this product
           </h1>
-          <p className="mt-3 text-sm leading-6 text-slate-700">
+          <p className="mt-3 text-sm leading-6 text-amber-800">
             {error || "Something went wrong while loading the product details."}
           </p>
           <div className="mt-6">
@@ -47,13 +48,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const productView = mapProductToDetailView(product);
-  const [productReviews, myProductReview] = await Promise.all([
+  const [productReviews, myProductReview, allProductsResult] = await Promise.all([
     getProductReviews(product.id, {
       limit: 10,
       sort: "-createdAt",
     }),
     getMyProductReview(product.id),
+    getAllProducts(),
   ]);
+  const relatedProducts = allProductsResult.products
+    .filter((item) => item.id !== product.id)
+    .filter((item) =>
+      product.categoryId ? item.categoryId === product.categoryId : true,
+    )
+    .slice(0, 8);
 
   const hasInjectedMyReview =
     Boolean(myProductReview.review) &&
@@ -85,24 +93,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
       : productReviews.summary;
 
   return (
-    <div className="relative mx-auto my-6 w-full max-w-[1480px] px-4 sm:my-8 sm:px-6 lg:my-12 lg:px-8">
-      <div className="pointer-events-none absolute inset-x-12 top-0 -z-10 h-64 rounded-full bg-[radial-gradient(circle_at_center,rgba(14,116,144,0.12),transparent_68%)] blur-2xl" />
-
-      <div className="mb-5 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500 sm:text-sm">
-        <Link href="/" className="transition hover:text-slate-800">
+    <div className="mx-auto my-6 w-full max-w-[1480px] bg-background px-4 text-foreground sm:my-8 sm:px-6 lg:my-12 lg:px-8">
+      <div className="mb-5 flex flex-wrap items-center gap-2 text-xs font-medium text-muted-foreground sm:text-sm">
+        <Link href="/" className="transition hover:text-foreground">
           Home
         </Link>
         <span>/</span>
-        <Link href="/products" className="transition hover:text-slate-800">
+        <Link href="/products" className="transition hover:text-foreground">
           Products
         </Link>
         <span>/</span>
-        <span className="max-w-[240px] truncate text-slate-700 sm:max-w-[420px]">
+        <span className="max-w-[240px] truncate text-foreground sm:max-w-[420px]">
           {productView.title}
         </span>
       </div>
 
-      <section className="rounded-[32px] border border-slate-200/80 bg-white/80 p-3 shadow-[0_18px_55px_-30px_rgba(15,23,42,0.35)] backdrop-blur sm:p-4 lg:p-6">
+      <section className="border-y border-border bg-card/70 py-4 text-card-foreground sm:py-5 lg:py-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-8 xl:gap-10">
           <ProductGallery
             title={productView.title}
@@ -114,7 +120,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </section>
 
-      <div className="mt-10 sm:mt-12 lg:mt-16">
+      <div className="mt-8 sm:mt-10 lg:mt-12">
         <ProductDetailsTabs
           description={productView.description || ""}
           shortDescription={productView.shortDesc || ""}
@@ -123,7 +129,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         />
       </div>
 
-      <div className="mt-10 sm:mt-12 lg:mt-16">
+      <div className="mt-8 sm:mt-10 lg:mt-12">
         <ProductReviewsSection
           productId={product.id}
           reviews={mergedProductReviews}
@@ -132,8 +138,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
         />
       </div>
 
-      <div className="mt-10 sm:mt-12 lg:mt-16">
-        <RelatedProductsSection />
+      <div className="mt-8 sm:mt-10 lg:mt-12">
+        <RelatedProductsSection products={relatedProducts} />
       </div>
     </div>
   );

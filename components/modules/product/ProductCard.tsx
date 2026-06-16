@@ -73,7 +73,7 @@ export default function ProductCard({
   return (
     <div className="w-full">
       <div
-        className="group relative mb-3 overflow-hidden rounded-lg bg-gray-100"
+        className="group relative mb-3 overflow-hidden rounded-lg border border-border bg-card"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={navigateToProduct}
@@ -100,9 +100,9 @@ export default function ProductCard({
           <button
             type="button"
             onClick={toggleWishlist}
-            className={`absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg transition-all duration-300 ${
+            className={`absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-card-foreground shadow-lg transition-all duration-300 ${
               isHovered ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
-            } hover:bg-gray-50 active:scale-95`}
+            } hover:bg-secondary active:scale-95`}
             aria-label="Add to wishlist"
           >
             <Heart
@@ -110,7 +110,7 @@ export default function ProductCard({
               className={`transition-all duration-200 ${
                 isWishlisted
                   ? "fill-red-500 stroke-red-500"
-                  : "stroke-gray-700 hover:stroke-red-500"
+                  : "stroke-current hover:stroke-red-500"
               }`}
             />
           </button>
@@ -123,17 +123,17 @@ export default function ProductCard({
           onClick={navigateToProduct}
           className="w-full text-left"
         >
-          <h3 className="min-h-[2.5rem] line-clamp-2 text-sm font-medium leading-tight text-gray-800">
+          <h3 className="min-h-[2.5rem] line-clamp-2 text-sm font-medium leading-tight text-foreground">
             {title}
           </h3>
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-gray-900">
+          <span className="text-lg font-bold text-foreground">
             BDT {currentPrice.toFixed(2)}
           </span>
           {oldPrice !== null ? (
-            <span className="text-sm text-gray-400 line-through">
+            <span className="text-sm text-muted-foreground line-through">
               BDT {oldPrice.toFixed(2)}
             </span>
           ) : null}
@@ -142,9 +142,9 @@ export default function ProductCard({
         <div className="flex items-center gap-2 text-sm">
           <div className="flex items-center gap-1">
             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-            <span className="font-semibold text-gray-700">{rating}</span>
+            <span className="font-semibold text-foreground">{rating}</span>
           </div>
-          <span className="text-gray-400">({reviewCount} Reviews)</span>
+          <span className="text-muted-foreground">({reviewCount} Reviews)</span>
         </div>
       </div>
     </div>

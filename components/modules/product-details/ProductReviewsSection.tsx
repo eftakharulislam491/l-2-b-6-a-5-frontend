@@ -42,7 +42,7 @@ function renderStars(rating: number) {
           <Star
             key={index}
             className={`h-4 w-4 ${
-              filled ? "fill-amber-400 text-amber-400" : "text-slate-300"
+              filled ? "fill-amber-400 text-amber-400" : "text-muted-foreground"
             }`}
           />
         );
@@ -58,16 +58,16 @@ export default function ProductReviewsSection({
   error = null,
 }: ProductReviewsSectionProps) {
   return (
-    <section className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-      <div className="flex flex-col gap-6 border-b border-slate-100 pb-6 lg:flex-row lg:items-start lg:justify-between">
+    <section className="rounded-[28px] border border-border bg-card p-6 text-card-foreground shadow-sm sm:p-8">
+      <div className="flex flex-col gap-6 border-b border-border pb-6 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             Customer Reviews
           </p>
-          <h3 className="mt-2 text-2xl font-semibold text-slate-900">
+          <h3 className="mt-2 text-2xl font-semibold text-card-foreground">
             {summary.averageRating.toFixed(1)} / 5
           </h3>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-muted-foreground">
             Based on {summary.totalReviews} verified and community reviews.
           </p>
           <div className="mt-3">{renderStars(Math.round(summary.averageRating))}</div>
@@ -85,14 +85,14 @@ export default function ProductReviewsSection({
                 key={item.rating}
                 className="grid grid-cols-[44px_1fr_44px] items-center gap-3 text-sm"
               >
-                <span className="font-medium text-slate-700">{item.rating} star</span>
-                <div className="h-2 rounded-full bg-slate-100">
+                <span className="font-medium text-card-foreground">{item.rating} star</span>
+                <div className="h-2 rounded-full bg-muted">
                   <div
                     className="h-2 rounded-full bg-amber-400"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
-                <span className="text-right text-slate-500">{item.count}</span>
+                <span className="text-right text-muted-foreground">{item.count}</span>
               </div>
             );
           })}
@@ -112,14 +112,14 @@ export default function ProductReviewsSection({
           reviews.map((review) => (
             <Card
               key={review.id}
-              className="rounded-2xl border border-slate-200 p-5 shadow-none"
+              className="rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-none"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">
+                  <p className="text-sm font-semibold text-card-foreground">
                     {review.user.name || "Anonymous user"}
                   </p>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-muted-foreground">
                     {formatDate(review.createdAt)}
                   </p>
                 </div>
@@ -137,13 +137,13 @@ export default function ProductReviewsSection({
               </div>
 
               {review.title ? (
-                <p className="mt-4 text-sm font-semibold text-slate-900">{review.title}</p>
+                <p className="mt-4 text-sm font-semibold text-card-foreground">{review.title}</p>
               ) : null}
 
               {review.comment ? (
-                <p className="mt-2 text-sm leading-6 text-slate-700">{review.comment}</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{review.comment}</p>
               ) : (
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-muted-foreground">
                   This user only gave a rating.
                 </p>
               )}
@@ -161,7 +161,7 @@ export default function ProductReviewsSection({
             </Card>
           ))
         ) : (
-          <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center text-sm text-slate-600">
+          <div className="rounded-2xl border border-dashed border-border bg-muted px-5 py-8 text-center text-sm text-muted-foreground">
             No reviews yet for this product.
           </div>
         )}

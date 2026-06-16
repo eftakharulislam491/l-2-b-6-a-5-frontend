@@ -44,20 +44,20 @@ export default function ProductCatalogResults({
     <section>
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-muted-foreground">
             Showing{" "}
-            <span className="font-semibold text-slate-900">
+            <span className="font-semibold text-foreground">
               {visibleProducts.length}
             </span>{" "}
             of{" "}
-            <span className="font-semibold text-slate-900">
+            <span className="font-semibold text-foreground">
               {filteredCount}
             </span>{" "}
             matching products
           </p>
 
           {hasActiveFilters ? (
-            <p className="mt-1 text-xs text-slate-400">
+            <p className="mt-1 text-xs text-muted-foreground">
               Filters are narrowing your live catalog results.
             </p>
           ) : null}
@@ -67,7 +67,7 @@ export default function ProductCatalogResults({
           value={sort}
           onValueChange={(value) => onSortChange(value as CatalogSortKey)}
         >
-          <SelectTrigger className="h-10 w-full rounded-full bg-white sm:w-[220px]">
+          <SelectTrigger className="h-10 w-full rounded-full border-border bg-card text-card-foreground sm:w-[220px]">
             <SelectValue placeholder="Sort products" />
           </SelectTrigger>
           <SelectContent>
@@ -81,13 +81,13 @@ export default function ProductCatalogResults({
       </div>
 
       {visibleProducts.length === 0 ? (
-        <Card className="rounded-[2rem] border-0 bg-white p-10 text-center shadow-sm">
-          <h3 className="text-lg font-semibold text-slate-900">
+        <Card className="rounded-[2rem] border border-border bg-card p-10 text-center text-card-foreground shadow-sm">
+          <h3 className="text-lg font-semibold text-card-foreground">
             {totalProducts === 0
               ? "No products available right now."
               : "No products matched these filters."}
           </h3>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-muted-foreground">
             {totalProducts === 0
               ? "Once products are available from the API, they will appear here automatically."
               : "Try widening the filters or clear them to see more of the catalog."}

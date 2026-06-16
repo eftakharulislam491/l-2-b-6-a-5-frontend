@@ -20,16 +20,16 @@ export default function ProductCatalogHeader({
 }: ProductCatalogHeaderProps) {
   return (
     <>
-      <Card className="overflow-hidden rounded-[2rem] border-0 bg-white shadow-sm">
+      <Card className="overflow-hidden rounded-[2rem] border border-border bg-card text-card-foreground shadow-sm">
         <div className="grid gap-0 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
           <div className="p-8 sm:p-10 lg:p-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-muted-foreground">
               Product Collection
             </p>
-            <h1 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            <h1 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight text-card-foreground sm:text-4xl lg:text-5xl">
               Browse your full catalog with live product data
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
               Explore every product from your backend in one place, then narrow
               things down with category, stock, featured, and price filters.
             </p>
@@ -42,7 +42,7 @@ export default function ProductCatalogHeader({
               </Badge>
               <Badge
                 variant="outline"
-                className="rounded-full border-slate-200 px-4 py-1.5 text-xs font-medium text-slate-600"
+                className="rounded-full border-border px-4 py-1.5 text-xs font-medium text-muted-foreground"
               >
                 Real API results
               </Badge>
@@ -62,15 +62,15 @@ export default function ProductCatalogHeader({
         </div>
       </Card>
 
-      <div className="mt-8 rounded-[2rem] border-0 bg-white p-5 shadow-sm sm:p-6">
+      <div className="mt-8 rounded-[2rem] border border-border bg-card p-5 text-card-foreground shadow-sm sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={query}
               onChange={(event) => onQueryChange(event.target.value)}
               placeholder="Search by title, brand, category, or slug"
-              className="h-11 rounded-full border-slate-200 pl-10"
+              className="h-11 rounded-full border-border bg-background pl-10 text-foreground placeholder:text-muted-foreground"
             />
           </div>
 

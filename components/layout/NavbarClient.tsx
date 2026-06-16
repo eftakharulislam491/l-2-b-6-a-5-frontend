@@ -8,6 +8,7 @@ import { useMemo, useState, useTransition, type FormEvent } from "react";
 import { getNavBarCategoriesWithFallback } from "@/lib/home-product-categories";
 import { logoutUser } from "@/services/auth/logoutUser";
 import { useCart } from "@/components/providers/cart-provider";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 
 import AccountDropdown from "./components/navbar/AccountDropdown";
 import CartSidebar from "./components/navbar/CartSidebar";
@@ -175,7 +176,7 @@ export default function NavbarClient({
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/95 shadow-sm backdrop-blur">
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 shadow-sm backdrop-blur">
         <div className="container mx-auto px-4 py-3 sm:px-0">
           <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-3 sm:gap-x-3 lg:gap-4">
             <div className="flex min-w-0 items-center gap-2 sm:gap-3">
@@ -183,7 +184,7 @@ export default function NavbarClient({
                 type="button"
                 onClick={() => setSidebarOpen(true)}
                 aria-label="Open menu"
-                className="flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 px-3 text-slate-700 transition hover:bg-slate-100 active:scale-95"
+                className="flex h-10 items-center justify-center gap-2 rounded-full border border-border px-3 text-foreground transition hover:bg-secondary active:scale-95"
               >
                 <Menu className="h-5 w-5" />
                 <span className="hidden text-sm font-medium sm:inline">Menu</span>
@@ -191,7 +192,7 @@ export default function NavbarClient({
 
               <Link href="/" className="min-w-0 select-none">
                 <span
-                  className="block truncate text-xl font-black tracking-tight text-slate-900 uppercase sm:text-2xl"
+                  className="block truncate text-xl font-black tracking-tight text-foreground uppercase sm:text-2xl"
                   style={{
                     fontFamily: "'Montserrat','Trebuchet MS',sans-serif",
                     letterSpacing: "-0.03em",
@@ -205,7 +206,7 @@ export default function NavbarClient({
             <div className="col-span-3 min-w-0 lg:col-span-1 lg:justify-self-center">
               <form
                 onSubmit={handleSearchSubmit}
-                className="mx-auto flex w-full max-w-[840px] items-center rounded-full border border-slate-200 bg-slate-50 transition focus-within:border-slate-400 focus-within:bg-white focus-within:shadow-sm"
+                className="mx-auto flex w-full max-w-[840px] items-center rounded-full border border-border bg-muted transition focus-within:border-ring focus-within:bg-card focus-within:shadow-sm"
               >
                 <CategoryDropdown
                   categories={categories}
@@ -218,13 +219,13 @@ export default function NavbarClient({
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                   placeholder="Search products"
-                  className="h-11 min-w-0 flex-1 bg-transparent px-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none"
+                  className="h-11 min-w-0 flex-1 bg-transparent px-3 text-sm text-foreground placeholder:text-muted-foreground outline-none"
                 />
 
                 <button
                   type="submit"
                   aria-label="Search"
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-r-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-r-full text-muted-foreground transition hover:bg-secondary hover:text-foreground"
                 >
                   {isSearching ? (
                     <Loader2 className="h-5 w-5 animate-spin" />
@@ -236,6 +237,8 @@ export default function NavbarClient({
             </div>
 
             <nav className="flex shrink-0 items-center justify-end gap-2 lg:justify-self-end">
+              <ModeToggle />
+
               <CartSidebar
                 items={cartItems}
                 isLoading={isCartLoading}
@@ -244,7 +247,7 @@ export default function NavbarClient({
                 <button
                   type="button"
                   aria-label="Cart"
-                  className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+                  className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition hover:bg-secondary"
                 >
                   <ShoppingCart className="h-5 w-5" />
                   <span
@@ -272,7 +275,7 @@ export default function NavbarClient({
               ) : (
                 <Link
                   href="/login"
-                  className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full bg-slate-900 px-3 text-sm font-medium text-white transition hover:bg-slate-700 active:scale-95 sm:gap-2 sm:px-4"
+                  className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full bg-primary px-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 active:scale-95 sm:gap-2 sm:px-4"
                 >
                   <User className="h-4 w-4" />
                   <span className="hidden sm:inline">Login</span>
@@ -282,7 +285,7 @@ export default function NavbarClient({
           </div>
         </div>
 
-        <div className="hidden border-t border-slate-100/80 md:block">
+        <div className="hidden border-t border-border md:block">
           <div className="container mx-auto flex items-center gap-3 overflow-x-auto px-4 py-3 sm:px-0">
             <nav className="flex shrink-0 items-center gap-2 whitespace-nowrap">
               {MAIN_NAV_LINKS.map((item) => (
@@ -291,8 +294,8 @@ export default function NavbarClient({
                   href={item.href}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                     isMainLinkActive(item.href)
-                      ? "bg-slate-900 text-white"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                   }`}
                 >
                   {item.label}

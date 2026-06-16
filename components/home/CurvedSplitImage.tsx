@@ -31,15 +31,15 @@ const features: Feature[] = [
 export default function WhyChooseUsSection() {
 
   return (
-    <section className="w-full bg-[#F4F6F8]">
+    <section className="w-full bg-muted/45 text-foreground">
       <div className="container mx-auto px-4 py-10 sm:py-14">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Why Choose Us
             </h2>
 
-            <p className="mt-3 max-w-prose text-sm leading-6 text-slate-600 sm:text-base">
+            <p className="mt-3 max-w-prose text-sm leading-6 text-muted-foreground sm:text-base">
               Source premium makeup and skincare raw materials with confidence.
               We help beauty brands, resellers, and makers find dependable
               ingredients with a smoother buying experience.
@@ -48,15 +48,15 @@ export default function WhyChooseUsSection() {
             <div className="mt-6 space-y-4">
               {features.map((f) => (
                 <div key={f.title} className="flex gap-3">
-                  <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm">
-                    <CheckCircle2 className="h-5 w-5 text-slate-700" />
+                  <span className="mt-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-card shadow-sm">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
                   </span>
 
                   <div>
-                    <p className="text-sm font-semibold text-slate-900">
+                    <p className="text-sm font-semibold text-foreground">
                       {f.title}
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-slate-600">
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">
                       {f.desc}
                     </p>
                   </div>
@@ -66,7 +66,7 @@ export default function WhyChooseUsSection() {
           </div>
 
 {/* right part */}
-          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[32px] bg-white shadow-sm">
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[32px] border border-border bg-card shadow-sm">
             <Image
               src="/splitImg.png"
               alt="Curved beauty ingredients collage"

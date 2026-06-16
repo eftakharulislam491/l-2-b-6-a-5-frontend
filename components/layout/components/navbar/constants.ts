@@ -10,6 +10,8 @@ export const MAIN_NAV_LINKS: NavbarMainLink[] = [
   { label: "Featured", href: "/products?featured=true" },
   { label: "New Arrivals", href: "/products?sort=newest" },
   { label: "In Stock", href: "/products?stock=in_stock" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function buildCategoryHref(categoryLabel: string) {

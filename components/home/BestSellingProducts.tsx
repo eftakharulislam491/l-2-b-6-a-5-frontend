@@ -51,17 +51,17 @@ export default function BestSellingProducts({ products }: Props) {
   const handlePrev = () => api?.scrollPrev();
   const handleNext = () => api?.scrollNext();
   return (
-    <section className=" w-full bg-[#F4F6F8]">
+    <section className="w-full bg-muted/45 text-foreground">
       <div className="container mx-auto py-10">
         {/* Top */}
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+          <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
             Best-Selling Beauty Ingredients
           </h2>
 
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-amber-700 hover:text-amber-800"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80"
           >
             View All Products
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -99,7 +99,7 @@ export default function BestSellingProducts({ products }: Props) {
             variant="outline"
             size="icon"
             onClick={handlePrev}
-            className="h-10 w-10 rounded-full bg-white shadow-sm"
+            className="h-10 w-10 rounded-full border-border bg-card text-card-foreground shadow-sm hover:bg-secondary"
             aria-label="Previous products"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -114,7 +114,7 @@ export default function BestSellingProducts({ products }: Props) {
                   key={i}
                   className={[
                     "h-1.5 rounded-full transition-all",
-                    isActive ? "w-10 bg-slate-900" : "w-6 bg-slate-300",
+                    isActive ? "w-10 bg-primary" : "w-6 bg-border",
                   ].join(" ")}
                 />
               );
@@ -125,7 +125,7 @@ export default function BestSellingProducts({ products }: Props) {
             variant="outline"
             size="icon"
             onClick={handleNext}
-            className="h-10 w-10 rounded-full bg-white shadow-sm"
+            className="h-10 w-10 rounded-full border-border bg-card text-card-foreground shadow-sm hover:bg-secondary"
             aria-label="Next products"
           >
             <ChevronRight className="h-5 w-5" />

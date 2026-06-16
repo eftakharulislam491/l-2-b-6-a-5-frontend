@@ -100,7 +100,7 @@ export default function ProductCatalogPage({
   );
 
   return (
-    <main className="min-h-screen bg-[#F4F6F8]">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 sm:py-10">
         {initialLoadError ? (
           <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
@@ -118,7 +118,7 @@ export default function ProductCatalogPage({
                 <SheetTrigger asChild>
                   <Button
                     variant="outline"
-                    className="h-11 rounded-full border-slate-200 px-5"
+                    className="h-11 rounded-full border-border px-5"
                   >
                     <SlidersHorizontal className="mr-2 h-4 w-4" />
                     Filters
@@ -149,7 +149,7 @@ export default function ProductCatalogPage({
 
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
           <aside className="hidden lg:block">
-            <Card className="rounded-[2rem] border-0 bg-white p-5 shadow-sm">
+            <Card className="rounded-[2rem] border border-border bg-card p-5 text-card-foreground shadow-sm">
               {filters}
             </Card>
           </aside>

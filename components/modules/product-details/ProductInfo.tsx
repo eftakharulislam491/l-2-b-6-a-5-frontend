@@ -115,7 +115,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   };
 
   return (
-    <section className="w-full min-w-0 space-y-5 rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm sm:space-y-6 sm:p-6 xl:p-8">
+    <section className="w-full min-w-0 space-y-5 bg-card px-1 text-card-foreground sm:space-y-6 sm:px-2 lg:px-0">
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <span
@@ -129,55 +129,55 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           </span>
 
           {product.isFeatured ? (
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
               Featured
             </span>
           ) : null}
 
           {product.isDigital ? (
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
               Digital
             </span>
           ) : null}
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl xl:text-[2.5rem]">
+          <h1 className="text-2xl font-semibold leading-tight text-card-foreground sm:text-3xl xl:text-[2.5rem]">
             {product.title}
           </h1>
-          <p className="max-w-2xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+          <p className="max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
             {product.shortDesc ||
               "Short description is not available for this product yet."}
           </p>
         </div>
       </div>
 
-      <div className="grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:grid-cols-3">
-        <div className="rounded-xl bg-white px-3 py-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+      <div className="grid gap-2 border-y border-border bg-muted/60 p-3 sm:grid-cols-3">
+        <div className="bg-card px-3 py-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
             Brand
           </p>
-          <p className="mt-1 text-sm font-medium text-slate-800">
+          <p className="mt-1 text-sm font-medium text-card-foreground">
             {product.brand || "No brand"}
           </p>
         </div>
-        <div className="rounded-xl bg-white px-3 py-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+        <div className="bg-card px-3 py-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
             Category
           </p>
-          <p className="mt-1 text-sm font-medium text-slate-800">{product.categoryLabel}</p>
+          <p className="mt-1 text-sm font-medium text-card-foreground">{product.categoryLabel}</p>
         </div>
-        <div className="rounded-xl bg-white px-3 py-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+        <div className="bg-card px-3 py-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
             Availability
           </p>
-          <p className="mt-1 text-sm font-medium text-slate-800">{product.stockLabel}</p>
+          <p className="mt-1 text-sm font-medium text-card-foreground">{product.stockLabel}</p>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-4 sm:p-5">
+      <div className="rounded-lg border border-border bg-muted p-4 sm:p-5">
         <div className="flex items-start justify-between gap-3">
-          <p className="text-sm font-medium text-slate-500">Price</p>
+          <p className="text-sm font-medium text-muted-foreground">Price</p>
           {discountPercentage ? (
             <span className="rounded-full bg-rose-100 px-2.5 py-1 text-xs font-semibold text-rose-700">
               Save {discountPercentage}%
@@ -185,11 +185,11 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           ) : null}
         </div>
         <div className="mt-2 flex flex-wrap items-end gap-x-2 gap-y-1">
-          <span className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+          <span className="text-3xl font-semibold text-foreground sm:text-4xl">
             {formatCurrency(displayedPrice)}
           </span>
           {displayedCompareAtPrice ? (
-            <span className="pb-1 text-sm text-slate-500 line-through sm:text-base">
+            <span className="pb-1 text-sm text-muted-foreground line-through sm:text-base">
               {formatCurrency(displayedCompareAtPrice)}
             </span>
           ) : null}
@@ -209,7 +209,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
             return (
               <div key={group.id} className="space-y-3">
-                <label className="block text-sm font-medium text-slate-700">
+                <label className="block text-sm font-medium text-card-foreground">
                   {group.title}
                 </label>
 
@@ -218,7 +218,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                   onChange={(event) =>
                     handleVariantChange(group.id, event.target.value)
                   }
-                  className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-sm text-slate-800 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                  className="h-12 w-full rounded-xl border border-border bg-background px-4 text-sm text-foreground outline-none transition focus:border-ring focus:ring-4 focus:ring-ring/20"
                 >
                   {group.options.map((option) => (
                     <option key={option.id} value={option.id}>
@@ -230,32 +230,32 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             );
           })}
 
-          <div className="flex flex-col gap-2 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-            <span className="text-sm text-slate-700">
+          <div className="flex flex-col gap-2 rounded-lg border border-border bg-secondary px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <span className="text-sm text-secondary-foreground">
               Selected SKU: {displayedSku || "Not set"}
             </span>
-            <span className="text-xl font-semibold text-amber-600">
+            <span className="text-xl font-semibold text-foreground">
               {formatCurrency(displayedPrice)}
             </span>
           </div>
         </div>
       ) : null}
 
-      <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-lg border border-border bg-muted p-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-medium text-slate-700">Quantity</p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="text-sm font-medium text-foreground">Quantity</p>
+          <p className="mt-1 text-xs text-muted-foreground">
             Adjust the order quantity
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center overflow-hidden rounded-xl border border-slate-300 bg-white">
+          <div className="inline-flex items-center overflow-hidden rounded-xl border border-border bg-background">
             <button
               type="button"
               onClick={() => changeQuantity(-1)}
               aria-label="Decrease quantity"
-              className="h-11 w-11 bg-slate-100 text-lg text-slate-700 transition hover:bg-slate-200"
+              className="h-11 w-11 bg-secondary text-lg text-secondary-foreground transition hover:bg-secondary/80"
             >
               -
             </button>
@@ -266,19 +266,19 @@ export default function ProductInfo({ product }: ProductInfoProps) {
               onChange={(event) =>
                 setQuantity(Math.max(1, Number(event.target.value) || 1))
               }
-              className="h-11 w-16 border-0 text-center text-sm font-medium text-slate-900 outline-none"
+              className="h-11 w-16 border-0 bg-background text-center text-sm font-medium text-foreground outline-none"
             />
             <button
               type="button"
               onClick={() => changeQuantity(1)}
               aria-label="Increase quantity"
-              className="h-11 w-11 bg-slate-100 text-lg text-slate-700 transition hover:bg-slate-200"
+              className="h-11 w-11 bg-secondary text-lg text-secondary-foreground transition hover:bg-secondary/80"
             >
               +
             </button>
           </div>
 
-          <span className="text-sm text-slate-600">
+          <span className="text-sm text-muted-foreground">
             {displayedBarcode ? `Barcode: ${displayedBarcode}` : "Ready to order"}
           </span>
         </div>
@@ -289,7 +289,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           type="button"
           disabled={!isAvailable}
           onClick={handleAddToCart}
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
         >
           <ShoppingCart className="h-4 w-4" />
           {isAvailable
@@ -299,24 +299,24 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             : "Out of Stock"}
         </button>
 
-        <button className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+        <button className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-4 py-3 text-sm font-semibold text-card-foreground transition hover:bg-secondary">
           Request Quote
         </button>
 
         <button
           type="button"
           aria-label="Add to wishlist"
-          className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-slate-700 transition hover:bg-slate-50"
+          className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-4 py-3 text-card-foreground transition hover:bg-secondary"
         >
           <Heart className="h-5 w-5" />
         </button>
       </div>
 
-      <div className="rounded-2xl border-l-4 border-yellow-500 bg-yellow-50 p-4 sm:p-5">
-        <h3 className="text-sm font-semibold text-yellow-800">
+      <div className="rounded-lg border-l-4 border-primary bg-secondary p-4 sm:p-5">
+        <h3 className="text-sm font-semibold text-secondary-foreground">
           Product Information
         </h3>
-        <ul className="mt-2 space-y-1 pl-5 text-sm text-yellow-800">
+        <ul className="mt-2 space-y-1 pl-5 text-sm text-secondary-foreground">
           <li className="list-disc">Product ID: {product.id}</li>
           <li className="list-disc">SKU: {displayedSku || "Not set"}</li>
           <li className="list-disc">Stock: {displayedStock ?? 0}</li>

@@ -77,7 +77,7 @@ export default async function page() {
   );
 
   return (
-    <div>
+    <div className="bg-background text-foreground">
       <Banner />
       <AboutUs />
       <CategorySection products={products} categories={dynamicCategories} />

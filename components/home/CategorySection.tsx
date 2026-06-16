@@ -66,16 +66,16 @@ export default function CategorySection({ products, categories = [] }: Props) {
   };
 
   return (
-    <section className="py-16">
+    <section className="bg-background py-16 text-foreground">
       <div className="container mx-auto px-4">
 
         {/* Header */}
         <div className="mb-6 flex items-end justify-between">
           <div>
-            <h2 className="mb-1 text-2xl font-semibold text-slate-900 sm:text-4xl">
+            <h2 className="mb-1 text-2xl font-semibold text-foreground sm:text-4xl">
               Shop by Category
             </h2>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               Browse our wide range of raw materials & ingredients
             </p>
           </div>
@@ -84,14 +84,14 @@ export default function CategorySection({ products, categories = [] }: Props) {
           <div className="hidden items-center gap-2 sm:flex">
             <button
               onClick={() => scroll("left")}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-amber-600 hover:text-amber-700"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-card-foreground shadow-sm transition hover:border-primary hover:text-primary"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-amber-600 hover:text-amber-700"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-card-foreground shadow-sm transition hover:border-primary hover:text-primary"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
@@ -109,8 +109,8 @@ export default function CategorySection({ products, categories = [] }: Props) {
                 className={[
                   "flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-all",
                   activeCategory === category.value
-                    ? "border-amber-700 bg-amber-700 text-white"
-                    : "border-slate-200 bg-white text-slate-600 hover:border-amber-600 hover:text-amber-700",
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-card text-card-foreground hover:border-primary hover:text-primary",
                 ].join(" ")}
               >
                 <span className="relative h-5 w-5 overflow-hidden rounded-full">
@@ -131,7 +131,7 @@ export default function CategorySection({ products, categories = [] }: Props) {
 
         {/* Product Row */}
         {filteredProducts.length === 0 ? (
-          <p className="py-10 text-center text-sm text-slate-400">
+          <p className="py-10 text-center text-sm text-muted-foreground">
             No products in this category yet.
           </p>
         ) : (
@@ -150,7 +150,7 @@ export default function CategorySection({ products, categories = [] }: Props) {
                 key={product.id}
                 href={`/products/${String(product.id).trim() || product.slug}`}
                 draggable={false}
-                className="w-[160px] shrink-0 overflow-hidden rounded-xl border border-slate-100 bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg sm:w-[200px] lg:w-[220px]"
+                className="w-[160px] shrink-0 overflow-hidden rounded-xl border border-border bg-card text-card-foreground transition-all duration-200 hover:-translate-y-1 hover:shadow-lg sm:w-[200px] lg:w-[220px]"
               >
                 {/* Image */}
                 <div className="relative aspect-square">
@@ -169,8 +169,8 @@ export default function CategorySection({ products, categories = [] }: Props) {
                     </span>
                   ) : null}
                   {!product.inStock ? (
-                    <div className="absolute inset-0 flex items-center justify-center bg-white/60">
-                      <span className="rounded-full border bg-white px-3 py-1 text-xs font-medium text-slate-500">
+                    <div className="absolute inset-0 flex items-center justify-center bg-background/70">
+                      <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
                         Out of Stock
                       </span>
                     </div>
@@ -179,16 +179,16 @@ export default function CategorySection({ products, categories = [] }: Props) {
 
                     {/* Info */}
                     <div className="p-3">
-                      <h3 className="mb-3 line-clamp-2 text-sm leading-snug font-medium text-slate-800">
+                      <h3 className="mb-3 line-clamp-2 text-sm leading-snug font-medium text-card-foreground">
                         {product.title}
                       </h3>
                       <div className="flex items-center justify-between gap-2">
                         <div className="min-w-0">
-                          <span className="text-sm font-semibold text-slate-900 sm:text-base">
+                          <span className="text-sm font-semibold text-card-foreground sm:text-base">
                             BDT {product.price.toFixed(2)}
                           </span>
                           {product.originalPrice ? (
-                            <span className="ml-1 text-[10px] text-slate-400 line-through sm:text-xs">
+                            <span className="ml-1 text-[10px] text-muted-foreground line-through sm:text-xs">
                               BDT {product.originalPrice.toFixed(2)}
                             </span>
                           ) : null}

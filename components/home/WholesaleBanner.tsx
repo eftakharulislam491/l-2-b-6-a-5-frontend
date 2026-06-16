@@ -17,19 +17,19 @@ export default function WholesaleBanner({
   imageSrc = "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&q=80&auto=format&fit=crop",
 }: Props) {
   return (
-    <section className="container mx-auto py-10 sm:py-14">
+    <section className="container mx-auto bg-background py-10 text-foreground sm:py-14">
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10">
         <div className="space-y-5">
-          <h2 className="whitespace-pre-line text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="whitespace-pre-line text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
             {title}
           </h2>
 
-          <p className="max-w-prose text-sm leading-6 text-slate-600 sm:text-base">
+          <p className="max-w-prose text-sm leading-6 text-muted-foreground sm:text-base">
             {description}
           </p>
 
           <Button
-            className="h-11 rounded-full bg-slate-900 px-6 text-white hover:bg-slate-800"
+            className="h-11 rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90"
             type="button"
           >
             {buttonText}
@@ -37,7 +37,7 @@ export default function WholesaleBanner({
         </div>
 
         <div className="lg:justify-self-end">
-          <div className="relative overflow-hidden rounded-2xl bg-white shadow-sm">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
             <div className="relative aspect-16/10 w-full lg:w-130">
               <Image
                 src={imageSrc}

@@ -34,19 +34,19 @@ export default function ProductReviewForm({ productId }: ProductReviewFormProps)
     <form
       ref={formRef}
       action={formAction}
-      className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6"
+      className="mt-6 rounded-2xl border border-border bg-muted p-5 sm:p-6"
     >
       <input type="hidden" name="productId" value={productId} />
 
       <div className="space-y-1">
-        <h4 className="text-lg font-semibold text-slate-900">Write a review</h4>
-        <p className="text-sm text-slate-600">
+        <h4 className="text-lg font-semibold text-foreground">Write a review</h4>
+        <p className="text-sm text-muted-foreground">
           Submit your rating and feedback for this product.
         </p>
       </div>
 
       <fieldset className="mt-5 space-y-2">
-        <legend className="text-sm font-medium text-slate-700">Your rating *</legend>
+        <legend className="text-sm font-medium text-foreground">Your rating *</legend>
         <div className="flex flex-wrap gap-2">
           {RATING_OPTIONS.map((rating) => (
             <label key={rating} className="cursor-pointer">
@@ -57,7 +57,7 @@ export default function ProductReviewForm({ productId }: ProductReviewFormProps)
                 required
                 className="peer sr-only"
               />
-              <span className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-slate-400 peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:text-blue-700">
+              <span className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-card-foreground transition hover:border-ring peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground">
                 {rating}
                 <Star className="h-4 w-4 fill-current" />
               </span>
@@ -68,7 +68,7 @@ export default function ProductReviewForm({ productId }: ProductReviewFormProps)
 
       <div className="mt-4 grid gap-4">
         <div className="grid gap-2">
-          <label htmlFor="review-title" className="text-sm font-medium text-slate-700">
+          <label htmlFor="review-title" className="text-sm font-medium text-foreground">
             Title (optional)
           </label>
           <input
@@ -77,12 +77,12 @@ export default function ProductReviewForm({ productId }: ProductReviewFormProps)
             type="text"
             maxLength={255}
             placeholder="Summarize your experience"
-            className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/20"
           />
         </div>
 
         <div className="grid gap-2">
-          <label htmlFor="review-comment" className="text-sm font-medium text-slate-700">
+          <label htmlFor="review-comment" className="text-sm font-medium text-foreground">
             Comment (optional)
           </label>
           <textarea
@@ -91,7 +91,7 @@ export default function ProductReviewForm({ productId }: ProductReviewFormProps)
             rows={4}
             maxLength={2000}
             placeholder="Tell others what you liked or disliked"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            className="w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/20"
           />
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function ProductReviewForm({ productId }: ProductReviewFormProps)
         <Button type="submit" disabled={isPending} className="rounded-xl">
           {isPending ? "Submitting..." : "Submit review"}
         </Button>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted-foreground">
           One review per user for this product.
         </p>
       </div>

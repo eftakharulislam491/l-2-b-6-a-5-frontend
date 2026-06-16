@@ -50,13 +50,13 @@ export default function DecorateHomeSection({
   description = "From cosmetic bases and essential oils to waxes, actives, and pigments, we make it easier to source the raw materials your beauty business needs.",
 }: Props) {
   return (
-    <section className=" container mx-auto ">
+    <section className="container mx-auto bg-background text-foreground">
       <div className="py-10 sm:py-14">
         {/* Equal columns */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch">
           {/* LEFT: Image */}
           <div className="h-full">
-            <div className="relative h-full overflow-hidden rounded-2xl bg-white shadow-sm">
+            <div className="relative h-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
               <div className="relative aspect-[4/3] w-full lg:h-full lg:aspect-auto">
                 <Image
                   src={imageSrc}
@@ -73,15 +73,15 @@ export default function DecorateHomeSection({
           {/* RIGHT: Content */}
           <div className="flex h-full flex-col">
             <div className="space-y-4">
-              <h2 className="whitespace-pre-line text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="whitespace-pre-line text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
                 {title}
               </h2>
 
-              <p className="max-w-prose text-sm leading-6 text-slate-600 sm:text-base">
+              <p className="max-w-prose text-sm leading-6 text-muted-foreground sm:text-base">
                 {description}
               </p>
 
-              <p className="pt-2 text-sm font-semibold text-slate-900">
+              <p className="pt-2 text-sm font-semibold text-foreground">
                 How It Works
               </p>
             </div>
@@ -102,22 +102,22 @@ export default function DecorateHomeSection({
                   <Card
                     key={s.title}
                     className={cn(
-                      "border bg-white p-5 shadow-sm rounded-none",
+                      "rounded-none border-border bg-card p-5 text-card-foreground shadow-sm",
                       "transition-all duration-300 ease-out", // smooth animation
                       "hover:scale-[1.03] hover:shadow-md", // 👈 scale + shadow
                       roundedStyles[index % 4],
                     )}
                   >
                     <div className="flex flex-col items-center text-center">
-                      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100">
-                        <Icon className="h-5 w-5 text-slate-700" />
+                      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
+                        <Icon className="h-5 w-5 text-secondary-foreground" />
                       </div>
 
-                      <h3 className="text-sm font-semibold text-slate-900">
+                      <h3 className="text-sm font-semibold text-card-foreground">
                         {s.title}
                       </h3>
 
-                      <p className="mt-2 text-xs leading-5 text-slate-600">
+                      <p className="mt-2 text-xs leading-5 text-muted-foreground">
                         {s.description}
                       </p>
                     </div>

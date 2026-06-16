@@ -55,8 +55,7 @@ export default async function AdminDashboardPage() {
       (left, right) =>
         getOrderTimestamp(right.placedAt || right.createdAt) -
         getOrderTimestamp(left.placedAt || left.createdAt),
-    )
-    .slice(0, 5);
+    );
 
   const topProducts = Array.from(
     revenueOrders.reduce<
