@@ -23,7 +23,7 @@ Frontend for Assignment 5, built with Next.js (App Router) and Tailwind CSS.
   - Profile
   - Wishlist
   - Addresses
-- Admin panel routes:
+- Admin panel routes: 
   - Dashboard
   - Categories
   - Products
