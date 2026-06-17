@@ -4,7 +4,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { useCart } from "@/components/providers/cart-provider";
-import { useGlobalLoading } from "@/components/providers/global-loading-provider";
+import {
+  startGlobalRouteLoading,
+  useGlobalLoading,
+} from "@/components/providers/global-loading-provider";
 import { createAddress } from "@/services/address/createAddress";
 import { initiatePayment } from "@/services/payment/initiatePayment";
 import { verifyStripeSession } from "@/services/payment/verifyStripeSession";
@@ -385,6 +388,7 @@ export default function CartPageClient({
   };
 
   const handleContinueShopping = () => {
+    startGlobalRouteLoading();
     router.push("/products");
   };
 

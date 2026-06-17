@@ -8,6 +8,7 @@ import { useMemo, useState, useTransition, type FormEvent } from "react";
 import { getNavBarCategoriesWithFallback } from "@/lib/home-product-categories";
 import { logoutUser } from "@/services/auth/logoutUser";
 import { useCart } from "@/components/providers/cart-provider";
+import { startGlobalRouteLoading } from "@/components/providers/global-loading-provider";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 
 import AccountDropdown from "./components/navbar/AccountDropdown";
@@ -156,6 +157,7 @@ export default function NavbarClient({
     event.preventDefault();
 
     startSearchTransition(() => {
+      startGlobalRouteLoading();
       router.push(buildProductsSearchHref());
     });
   }
@@ -242,7 +244,10 @@ export default function NavbarClient({
               <CartSidebar
                 items={cartItems}
                 isLoading={isCartLoading}
-                onCheckout={() => router.push("/cart")}
+                onCheckout={() => {
+                  startGlobalRouteLoading();
+                  router.push("/cart");
+                }}
               >
                 <button
                   type="button"

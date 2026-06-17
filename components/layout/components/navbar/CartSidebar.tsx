@@ -3,11 +3,10 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import Link from "next/link";
-import { Minus, Plus, X } from "lucide-react";
+import { Loader2, Minus, Plus, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   Sheet,
   SheetClose,
@@ -102,25 +101,11 @@ export default function CartSidebar({
           {/* Items area */}
           <div className="flex-1 overflow-y-auto p-4">
             {isLoading && items.length === 0 ? (
-              <div className="space-y-3">
-                {Array.from({ length: 3 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="rounded-xl border border-slate-200 bg-white p-3"
-                  >
-                    <div className="flex gap-3">
-                      <Skeleton className="h-12 w-12 rounded-lg" />
-                      <div className="min-w-0 flex-1 space-y-2">
-                        <Skeleton className="h-4 w-3/4 rounded-full" />
-                        <Skeleton className="h-3 w-1/2 rounded-full" />
-                        <div className="flex items-center justify-between pt-1">
-                          <Skeleton className="h-8 w-24 rounded-md" />
-                          <Skeleton className="h-4 w-16 rounded-full" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex h-full min-h-64 flex-col items-center justify-center gap-3 text-center">
+                <Loader2 className="h-7 w-7 animate-spin text-slate-700" />
+                <p className="text-sm font-medium text-slate-700">
+                  Loading cart...
+                </p>
               </div>
             ) : items.length === 0 ? (
               <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
@@ -248,7 +233,10 @@ export default function CartSidebar({
                 Subtotal
               </span>
               {isLoading && items.length === 0 ? (
-                <Skeleton className="h-5 w-20 rounded-full" />
+                <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-500">
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Loading
+                </span>
               ) : (
                 <span className="text-sm font-semibold text-blue-600">
                   {money(subtotal)}

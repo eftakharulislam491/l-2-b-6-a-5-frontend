@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 import { useCart } from "@/components/providers/cart-provider";
+import { startGlobalRouteLoading } from "@/components/providers/global-loading-provider";
 import { loginUser } from "@/services/auth/loginUser";
 
 function getSafeRedirectPath(value: string | null) {
@@ -26,6 +27,7 @@ export default function LoginForm() {
       const handleSuccessfulLogin = async () => {
         toast.success(state.message);
         await refreshCart();
+        startGlobalRouteLoading();
         router.replace(redirectPath);
       };
 

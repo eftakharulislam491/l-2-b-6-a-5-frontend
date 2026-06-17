@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ShoppingBag } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2, ShoppingBag } from "lucide-react";
 import type { CartItemSummary } from "@/services/cart/cart-types";
 import { formatCartMoney } from "./cart-utils";
 
@@ -45,20 +44,13 @@ export function CartItemsPanel({
 
       <div className="border-t border-slate-100">
         {isLoading && items.length === 0 ? (
-          <div className="divide-y divide-slate-100">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <div key={index} className="flex gap-4 p-5">
-                <Skeleton className="h-16 w-16 rounded-xl" />
-                <div className="min-w-0 flex-1 space-y-3">
-                  <Skeleton className="h-4 w-4/5 rounded-full" />
-                  <Skeleton className="h-3 w-1/2 rounded-full" />
-                  <div className="flex items-center justify-between">
-                    <Skeleton className="h-8 w-16 rounded-full" />
-                    <Skeleton className="h-4 w-24 rounded-full" />
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid min-h-48 place-items-center p-8 text-center">
+            <div className="space-y-3">
+              <Loader2 className="mx-auto h-7 w-7 animate-spin text-slate-700" />
+              <p className="text-sm font-medium text-slate-700">
+                Loading cart...
+              </p>
+            </div>
           </div>
         ) : items.length === 0 ? (
           <div className="p-10 text-center">

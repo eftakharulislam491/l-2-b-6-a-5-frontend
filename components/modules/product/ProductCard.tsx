@@ -5,6 +5,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Heart, Star } from "lucide-react";
+import { startGlobalRouteLoading } from "@/components/providers/global-loading-provider";
 import type { Product } from "@/types/product";
 
 const PRODUCT_IMAGE_PLACEHOLDER = "/product/product-placeholder.svg";
@@ -53,6 +54,7 @@ export default function ProductCard({
       (normalizedSlug ? `/products/${normalizedSlug}` : "");
 
     if (resolvedDetailPath) {
+      startGlobalRouteLoading();
       router.push(resolvedDetailPath);
     }
   };

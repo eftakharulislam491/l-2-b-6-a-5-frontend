@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/ui/ModeToggle";
+import { startGlobalRouteLoading } from "@/components/providers/global-loading-provider";
 import { logoutUser } from "@/services/auth/logoutUser";
 
 type AdminTopbarActionsProps = {
@@ -42,6 +43,7 @@ export function AdminTopbarActions({ user }: AdminTopbarActionsProps) {
   function handleLogout() {
     startTransition(async () => {
       await logoutUser();
+      startGlobalRouteLoading();
       router.replace("/login");
       router.refresh();
     });

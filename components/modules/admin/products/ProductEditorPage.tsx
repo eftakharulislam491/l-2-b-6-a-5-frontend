@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useGlobalLoading } from "@/components/providers/global-loading-provider";
+import {
+  startGlobalRouteLoading,
+  useGlobalLoading,
+} from "@/components/providers/global-loading-provider";
 import { createProduct } from "@/services/products/createProduct";
 import { ProductAttributesSection } from "./components/ProductAttributesSection";
 import { ProductEditorHeader } from "./components/ProductEditorHeader";
@@ -263,6 +266,7 @@ export default function ProductEditorPage({
       }
 
       toast.success(result.message);
+      startGlobalRouteLoading();
       router.push("/admin/products");
       router.refresh();
     } finally {

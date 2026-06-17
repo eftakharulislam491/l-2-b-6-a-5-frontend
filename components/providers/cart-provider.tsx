@@ -10,7 +10,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { useGlobalLoading } from "@/components/providers/global-loading-provider";
+import {
+  startGlobalRouteLoading,
+  useGlobalLoading,
+} from "@/components/providers/global-loading-provider";
 import { toast } from "sonner";
 import { addToCart } from "@/services/cart/addToCart";
 import { getCart } from "@/services/cart/getCart";
@@ -103,6 +106,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             toast.error(result.message);
 
             if (result.requiresAuth) {
+              startGlobalRouteLoading();
               router.push(getLoginRedirectHref());
             }
 

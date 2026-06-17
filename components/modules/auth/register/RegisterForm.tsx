@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
+import { startGlobalRouteLoading } from "@/components/providers/global-loading-provider";
 import { registerUser } from "@/services/auth/registerUser";
 
 export default function RegisterForm() {
@@ -16,6 +17,7 @@ export default function RegisterForm() {
 
     if (state.success) {
       toast.success(state.message);
+      startGlobalRouteLoading();
       router.push("/login");
       return;
     }

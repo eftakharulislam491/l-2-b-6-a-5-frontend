@@ -9,6 +9,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { useTransition } from "react";
+import { startGlobalRouteLoading } from "@/components/providers/global-loading-provider";
 import { logoutUser } from "@/services/auth/logoutUser";
 
 type SidebarItem = {
@@ -44,6 +45,7 @@ export default function UserSidebar() {
     startLogoutTransition(async () => {
       await logoutUser();
       router.refresh();
+      startGlobalRouteLoading();
       router.push("/login");
     });
   }

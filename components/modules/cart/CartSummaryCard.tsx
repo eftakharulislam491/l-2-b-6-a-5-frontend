@@ -1,6 +1,6 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2 } from "lucide-react";
 import { formatCartMoney } from "./cart-utils";
 import type { CartStep } from "./types";
 
@@ -31,6 +31,13 @@ export function CartSummaryCard({
   onPayNow,
   onContinueShopping,
 }: CartSummaryCardProps) {
+  const loadingValue = (
+    <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-500">
+      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+      Loading
+    </span>
+  );
+
   return (
     <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-5">
       <h3 className="text-sm font-semibold text-slate-900">Order Summary</h3>
@@ -39,7 +46,7 @@ export function CartSummaryCard({
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-600">Subtotal</span>
           {isLoading && !hasItems ? (
-            <Skeleton className="h-4 w-20 rounded-full" />
+            loadingValue
           ) : (
             <span className="font-medium text-slate-900">
               {formatCartMoney(subtotal)}
@@ -50,7 +57,7 @@ export function CartSummaryCard({
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-600">Shipping</span>
           {isLoading && !hasItems ? (
-            <Skeleton className="h-4 w-20 rounded-full" />
+            loadingValue
           ) : (
             <span className="font-medium text-slate-900">
               {formatCartMoney(shipping)}
@@ -61,7 +68,7 @@ export function CartSummaryCard({
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-600">Tax</span>
           {isLoading && !hasItems ? (
-            <Skeleton className="h-4 w-20 rounded-full" />
+            loadingValue
           ) : (
             <span className="font-medium text-slate-900">
               {formatCartMoney(tax)}
@@ -74,7 +81,7 @@ export function CartSummaryCard({
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold text-slate-900">Total</span>
           {isLoading && !hasItems ? (
-            <Skeleton className="h-5 w-24 rounded-full" />
+            loadingValue
           ) : (
             <span className="text-sm font-semibold text-blue-600">
               {formatCartMoney(total)}
