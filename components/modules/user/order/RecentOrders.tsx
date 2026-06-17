@@ -26,11 +26,11 @@ export default function RecentOrders({
   initialError = null,
 }: RecentOrdersProps) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b px-6 py-4">
+    <div className="rounded-2xl border border-border bg-card text-card-foreground shadow-sm">
+      <div className="flex items-center justify-between border-b border-border px-6 py-4">
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">Recent Orders</h2>
-          <p className="mt-1 text-sm text-gray-500">
+          <h2 className="text-xl font-semibold text-foreground">Recent Orders</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
             Your latest order activity from the storefront.
           </p>
         </div>
@@ -40,7 +40,7 @@ export default function RecentOrders({
       </div>
 
       {initialError ? (
-        <div className="border-b border-amber-200 bg-amber-50 px-6 py-3 text-sm text-amber-800">
+        <div className="border-b border-border bg-destructive/10 px-6 py-3 text-sm text-destructive">
           {initialError}
         </div>
       ) : null}
@@ -59,7 +59,7 @@ export default function RecentOrders({
           {initialOrders.length ? (
             initialOrders.map((order) => (
               <TableRow key={order.id}>
-                <TableCell className="font-medium text-slate-900">
+                <TableCell className="font-medium text-foreground">
                   {order.orderNumber}
                 </TableCell>
                 <TableCell>{formatOrderDate(order.placedAt || order.createdAt)}</TableCell>
@@ -73,7 +73,7 @@ export default function RecentOrders({
                   </span>
                 </TableCell>
                 <TableCell>{order.itemCount}</TableCell>
-                <TableCell className="text-right font-semibold text-slate-900">
+                <TableCell className="text-right font-semibold text-foreground">
                   {formatOrderMoney(order.total)}
                 </TableCell>
               </TableRow>
@@ -82,7 +82,7 @@ export default function RecentOrders({
             <TableRow>
               <TableCell
                 colSpan={5}
-                className="h-28 text-center text-sm text-slate-500"
+                className="h-28 text-center text-sm text-muted-foreground"
               >
                 No orders yet. Your recent purchases will appear here after checkout.
               </TableCell>
