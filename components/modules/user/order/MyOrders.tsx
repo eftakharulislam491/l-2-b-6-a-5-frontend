@@ -47,21 +47,21 @@ function OrderDetailsDialog({
 
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
-      <Dialog.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[88vh] w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-3xl border bg-white shadow-2xl">
-        <div className="flex items-start justify-between gap-4 border-b px-6 py-5">
+      <Dialog.Overlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
+      <Dialog.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[88vh] w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-3xl border border-border bg-card text-card-foreground shadow-2xl">
+        <div className="flex items-start justify-between gap-4 border-b border-border px-6 py-5">
           <div>
-            <Dialog.Title className="text-lg font-semibold text-slate-900">
+            <Dialog.Title className="text-lg font-semibold text-foreground">
               {order.orderNumber}
             </Dialog.Title>
-            <Dialog.Description className="mt-1 text-sm text-slate-500">
+            <Dialog.Description className="mt-1 text-sm text-muted-foreground">
               Placed {formatOrderDateTime(order.placedAt || order.createdAt)}
             </Dialog.Description>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+            className="rounded-full p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
             aria-label="Close order details"
           >
             <X className="h-4 w-4" />
@@ -70,8 +70,8 @@ function OrderDetailsDialog({
 
         <div className="overflow-y-auto px-6 py-5">
           <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-slate-900">Status</p>
+            <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <p className="text-sm font-semibold text-foreground">Status</p>
               <span
                 className={`mt-3 inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${getOrderStatusBadgeClass(
                   order.status,
@@ -79,7 +79,7 @@ function OrderDetailsDialog({
               >
                 {formatOrderStatus(order.status)}
               </span>
-              <p className="mt-3 text-sm text-slate-600">
+              <p className="mt-3 text-sm text-muted-foreground">
                 Payment: {formatOrderStatus(order.paymentStatus)}
               </p>
               {canPay ? (
@@ -100,16 +100,16 @@ function OrderDetailsDialog({
               ) : null}
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-slate-900">Shipping</p>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
+            <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <p className="text-sm font-semibold text-foreground">Shipping</p>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 {formatOrderAddress(order)}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-slate-900">Summary</p>
-              <div className="mt-3 space-y-2 text-sm text-slate-600">
+            <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <p className="text-sm font-semibold text-foreground">Summary</p>
+              <div className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <div className="flex justify-between">
                   <span>Items</span>
                   <span>{order.itemCount}</span>
@@ -126,7 +126,7 @@ function OrderDetailsDialog({
                   <span>Tax</span>
                   <span>{formatOrderMoney(order.tax)}</span>
                 </div>
-                <div className="flex justify-between border-t border-slate-200 pt-2 font-semibold text-slate-900">
+                <div className="flex justify-between border-t border-border pt-2 font-semibold text-foreground">
                   <span>Total</span>
                   <span>{formatOrderMoney(order.total)}</span>
                 </div>
@@ -134,11 +134,11 @@ function OrderDetailsDialog({
             </div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-slate-200">
-            <div className="border-b px-4 py-3">
-              <p className="text-sm font-semibold text-slate-900">Order items</p>
+          <div className="mt-5 rounded-2xl border border-border">
+            <div className="border-b border-border px-4 py-3">
+              <p className="text-sm font-semibold text-foreground">Order items</p>
             </div>
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-border">
               {order.items.length ? (
                 order.items.map((item) => (
                   <div
@@ -146,24 +146,24 @@ function OrderDetailsDialog({
                     className="grid gap-3 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_80px_110px]"
                   >
                     <div>
-                      <p className="font-medium text-slate-900">{item.productName}</p>
-                      <p className="mt-1 text-xs text-slate-500">
+                      <p className="font-medium text-foreground">{item.productName}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
                         {item.productSku || "No SKU"}
                       </p>
                       {item.variantLabel ? (
-                        <p className="mt-1 text-xs text-slate-500">
+                        <p className="mt-1 text-xs text-muted-foreground">
                           {item.variantLabel}
                         </p>
                       ) : null}
                     </div>
-                    <p className="text-sm text-slate-500">Qty {item.quantity}</p>
-                    <p className="text-sm font-semibold text-slate-900">
+                    <p className="text-sm text-muted-foreground">Qty {item.quantity}</p>
+                    <p className="text-sm font-semibold text-foreground">
                       {formatOrderMoney(item.total)}
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="px-4 py-8 text-sm text-slate-500">
+                <p className="px-4 py-8 text-sm text-muted-foreground">
                   No item details were returned for this order.
                 </p>
               )}
@@ -246,17 +246,17 @@ export default function MyOrders({
 
   return (
     <div>
-      <div className="rounded-lg bg-white shadow-sm">
-        <div className="flex flex-col gap-4 border-b px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
+      <div className="rounded-lg border border-border bg-card text-card-foreground shadow-sm">
+        <div className="flex flex-col gap-4 border-b border-border px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">My Orders</h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <h2 className="text-xl font-semibold text-foreground">My Orders</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
               Track every order you placed from your dashboard.
             </p>
           </div>
 
           <div className="relative w-full lg:max-w-sm">
-            <Search className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+            <Search className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
             <Input
               value={searchQuery}
               onChange={(event) => {
@@ -270,7 +270,7 @@ export default function MyOrders({
         </div>
 
         {initialError ? (
-          <div className="border-b border-amber-200 bg-amber-50 px-6 py-3 text-sm text-amber-800">
+          <div className="border-b border-border bg-destructive/10 px-6 py-3 text-sm text-destructive">
             {initialError}
           </div>
         ) : null}
@@ -302,7 +302,7 @@ export default function MyOrders({
                       {formatOrderStatus(order.status)}
                     </span>
                   </TableCell>
-                  <TableCell className="text-sm text-slate-600">
+                  <TableCell className="text-sm text-muted-foreground">
                     {formatOrderStatus(order.paymentStatus)}
                   </TableCell>
                   <TableCell>{order.itemCount}</TableCell>
@@ -333,7 +333,7 @@ export default function MyOrders({
                         className="h-8 w-8"
                         onClick={() => setSelectedOrderId(order.id)}
                       >
-                        <Eye className="h-4 w-4 text-gray-600" />
+                        <Eye className="h-4 w-4" />
                       </Button>
                     </div>
                   </TableCell>
@@ -343,7 +343,7 @@ export default function MyOrders({
               <TableRow>
                 <TableCell
                   colSpan={7}
-                  className="h-28 text-center text-sm text-slate-500"
+                  className="h-28 text-center text-sm text-muted-foreground"
                 >
                   {initialOrders.length
                     ? "No orders matched your search."

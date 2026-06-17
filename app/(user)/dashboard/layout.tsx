@@ -24,11 +24,11 @@ export default async function UserLayout({
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <div className="container mx-auto flex gap-12 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex min-h-[calc(100vh-4rem)] gap-8 px-4 sm:px-6 lg:px-8">
         <UserSidebar />
-        <main className="mt-12 flex-1">{children}</main>
+        <main className="min-w-0 flex-1 py-8 lg:py-12">{children}</main>
       </div>
       <Footer />
     </div>

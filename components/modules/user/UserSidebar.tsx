@@ -51,7 +51,7 @@ export default function UserSidebar() {
   }
 
   return (
-    <aside className="min-h-screen w-64 border-r bg-white pt-12">
+    <aside className="hidden min-h-full w-64 shrink-0 border-r border-border bg-background pt-12 text-foreground lg:block">
       <nav className="space-y-2">
         {sidebarItems.map((item) => {
           const isActive = pathname === item.href;
@@ -62,8 +62,8 @@ export default function UserSidebar() {
               href={item.href}
               className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition ${
                 isActive
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-secondary hover:text-foreground"
               }`}
             >
               {item.icon}
@@ -73,9 +73,9 @@ export default function UserSidebar() {
         })}
       </nav>
 
-      <div className="mt-10 border-t pt-4">
+      <div className="mt-10 border-t border-border pt-4">
         <button
-          className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 transition hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-70"
+          className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-destructive disabled:cursor-not-allowed disabled:opacity-70"
           onClick={handleLogout}
           disabled={isLoggingOut}
         >
